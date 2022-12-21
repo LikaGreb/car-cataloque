@@ -1,0 +1,10 @@
+<p>select-fields works!</p>
+<mat-form-field appearance="fill">
+    <mat-label>Модель</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let tit of title" [value]="tit.value" [(ngModel)]="value">
+        {{tit.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button (click)="findModel()">Обрати</button>

@@ -1,0 +1,22 @@
+<p>cars works!</p>
+<button (click)="getCars()">Click</button>
+<table>
+    <tr>
+        <th>Модель</th>
+        <th>Виробник</th>
+        <th>Рік випуску</th>
+        <th>Колір</th>
+        <th>Об'єм двигуна</th>
+        <th>Ціна</th>
+        <th>Опис</th>
+    </tr>
+    <tr  *ngFor="let item of items" class="table">
+    <td >{{item.title}}</td>
+    <td >{{item.manuf}}</td>
+    <td >{{item.year}}</td>
+    <td >{{item.color}}</td>
+    <td >{{item.engine_opas}}</td>
+    <td >{{item.price}}</td>
+    <td >{{item.description}}</td>
+    </tr>
+</table>

@@ -14,7 +14,7 @@ export interface Task {
   styleUrls: ['./select-fields.component.scss'],
 })
 export class SelectFieldsComponent {
-  //items: Array<Items> = JSON.parse(localStorage.getItem('items')!);
+  @Input() updateOptions: boolean = false;
   items = Items;
   test: Array<Task> = [];
   task: Task = {
@@ -23,11 +23,16 @@ export class SelectFieldsComponent {
     color: 'primary',
     subtasks: [],
   };
-  //@Input() toGetCars: boolean = false;
+
   @Output() toGetCarsChange = new EventEmitter<boolean>();
+
+  isDisabled: boolean = false;
+  checkboxValues: Array<string> = [];
+  allComplete: boolean = false;
 
   constructor() {
     this.items = JSON.parse(localStorage.getItem('items')!);
+    console.log(this.items);
     this.items.map((i) => {
       this.test = this.test.concat({
         name: i.manuf,
@@ -42,10 +47,11 @@ export class SelectFieldsComponent {
       []
     );
   }
-  isDisabled: boolean = false;
-  checkboxValues: Array<string> = [];
-  allComplete: boolean = false;
 
+  ngDoCheck() {
+    console.log(this.updateOptions, 'this.updateOptions');
+    //this.filterItems(false);
+  }
   updateAllComplete(): void {
     this.allComplete =
       this.task.subtasks != null &&
@@ -72,25 +78,27 @@ export class SelectFieldsComponent {
   }
 
   filterItems(t: boolean) {
+    console.log(this.updateOptions, 'updateOptions in child');
     if (!this.isDisabled) {
-      if (this.task.subtasks !== null) {
-        localStorage.removeItem('checkboxValues');
-        this.checkboxValues = [];
-        if (this.task.subtasks!.filter((t) => t.completed).length > 0) {
-          const checkboxes = this.task.subtasks!.filter((t) => t.completed);
-          console.log(checkboxes, 'checkboxes');
-          checkboxes.map((b) => {
-            if (this.checkboxValues.indexOf(b.name) < 0) {
-              this.checkboxValues.push(b.name);
-            }
-          });
-          console.log(this.checkboxValues, 'this.checkboxValues');
-          localStorage.setItem(
-            'checkboxValues',
-            JSON.stringify(this.checkboxValues)
-          );
-          this.toGetCarsChange.emit(t);
-          //console.log(this.toGetCars, 'this.toGetCars');
+      if ((this.updateOptions)) {
+        console.log(this.updateOptions, 'updateOptions in child');
+        if (this.task.subtasks !== null) {
+          localStorage.removeItem('checkboxValues');
+          this.checkboxValues = [];
+          if (this.task.subtasks!.filter((t) => t.completed).length > 0) {
+            const checkboxes = this.task.subtasks!.filter((t) => t.completed);
+
+            checkboxes.map((b) => {
+              if (this.checkboxValues.indexOf(b.name) < 0) {
+                this.checkboxValues.push(b.name);
+              }
+            });
+            localStorage.setItem(
+              'checkboxValues',
+              JSON.stringify(this.checkboxValues)
+            );
+            this.toGetCarsChange.emit(t);
+          }
         }
       }
     } else {
@@ -98,7 +106,6 @@ export class SelectFieldsComponent {
     }
 
     this.isDisabled = true;
-    //this.toGetCars = false;
   }
 
   noFilter(t: boolean) {

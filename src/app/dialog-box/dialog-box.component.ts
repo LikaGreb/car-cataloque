@@ -1,12 +1,14 @@
-import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
 import {
   MatDialog,
   MAT_DIALOG_DATA,
   MatDialogRef,
 } from '@angular/material/dialog';
-import { Item } from '../cars/cars';
+import { Counter } from '../cars/carID';
+import { Item, Items } from '../cars/cars';
 
 export interface NewCar {
+  id: string;
   title: string;
   manuf: string;
   year: number;
@@ -24,7 +26,10 @@ export class DialogBoxComponent {
   error: string = '';
   itemsFromLS1: Array<Object> = [];
   haveToChange: string = '';
+  @Input() isEdit: boolean = false;
+  items = Items;
   newCar: NewCar = {
+    id: "",
     title: '',
     manuf: '',
     year: 0,
@@ -43,6 +48,7 @@ export class DialogBoxComponent {
   }
   save(): void {
     if (
+      
       this.newCar.title === '' ||
       this.newCar.manuf === '' ||
       this.newCar.year === 0 ||
@@ -57,17 +63,17 @@ export class DialogBoxComponent {
       }, 3000);
       return;
     }
-
+    const counter = new Counter;
+    this.newCar.id = counter.getCounter();
     console.log(this.newCar);
 
     const text = localStorage.getItem('items');
     console.log(text, 'text');
     this.itemsFromLS1 = JSON.parse(text!);
-    console.log(this.itemsFromLS1, 'this.itemsFromLS');
+      console.log(this.itemsFromLS1, 'this.itemsFromLS');
     this.itemsFromLS1.push(this.newCar);
     const itemsToJSON1 = JSON.stringify(this.itemsFromLS1);
     localStorage.setItem('items', itemsToJSON1);
     this.dialogRef.close();
   }
-  
 }

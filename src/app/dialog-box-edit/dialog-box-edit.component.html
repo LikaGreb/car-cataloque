@@ -1,0 +1,41 @@
+<p>dialog-box-edit works!</p>
+<section >
+<h1 mat-dialog-title>Редагувати авто</h1>
+<p *ngIf="error !== ''">{{ error }}</p>
+
+<div  mat-dialog-content>
+  <mat-form-field appearance="fill">
+    <label>Модель11111</label>
+    <input matInput [(ngModel)]="editCar.title" />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <label>Виробник</label>
+    <input matInput [(ngModel)]="editCar.manuf" />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <label>Рік випуску</label>
+    <input matInput [(ngModel)]="editCar.year" />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <label>Колір</label>
+    <input matInput [(ngModel)]="editCar.color" />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <label>Об'єм двигуна</label>
+    <input matInput [(ngModel)]="editCar.engine_opas" />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <label>Ціна</label>
+    <input matInput [(ngModel)]="editCar.price" />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <label>Опис</label>
+    <textarea matInput [(ngModel)]="editCar.description"></textarea>
+  </mat-form-field>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Відміна</button>
+  <button mat-button (click)="save()"  cdkFocusInitial>Зберегти</button>
+</div>
+</section>

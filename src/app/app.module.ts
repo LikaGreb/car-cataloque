@@ -13,6 +13,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { DialogBoxComponent } from './dialog-box/dialog-box.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { DialogBoxEditComponent } from './dialog-box-edit/dialog-box-edit.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { MatInputModule } from '@angular/material/input';
     CarsComponent,
     SelectFieldsComponent,
     DialogBoxComponent,
+    DialogBoxEditComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],

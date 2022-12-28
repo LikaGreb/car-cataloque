@@ -31,6 +31,38 @@
     <textarea matInput [(ngModel)]="newCar.description"></textarea>
   </mat-form-field>
 </div>
+
+<div *ngIf="isEdit" mat-dialog-content>
+  <mat-form-field appearance="fill">
+    <label>Модель11111</label>
+    <input matInput value="буде редагування" />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <label>Виробник</label>
+    <input matInput [(ngModel)]="newCar.manuf" />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <label>Рік випуску</label>
+    <input matInput [(ngModel)]="newCar.year" />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <label>Колір</label>
+    <input matInput [(ngModel)]="newCar.color" />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <label>Об'єм двигуна</label>
+    <input matInput [(ngModel)]="newCar.engine_opas" />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <label>Ціна</label>
+    <input matInput [(ngModel)]="newCar.price" />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <label>Опис</label>
+    <textarea matInput [(ngModel)]="newCar.description"></textarea>
+  </mat-form-field>
+</div>
+
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Відміна</button>
   <button mat-button (click)="save()"  cdkFocusInitial>Зберегти</button>

@@ -1,4 +1,5 @@
 export class Item {
+  id: string = "";
   title: string = '';
   manuf: string = '';
   year: number = 0;
@@ -9,6 +10,7 @@ export class Item {
 }
 export const Items: Item[] = [
   {
+    id: "1",
     title: 'camry',
     manuf: 'toyota',
     year: 1993,
@@ -18,6 +20,7 @@ export const Items: Item[] = [
     description: 'some text1',
   },
   {
+    id:"2",
     title: 'a4',
     manuf: 'audi',
     year: 2000,
@@ -27,6 +30,7 @@ export const Items: Item[] = [
     description: 'some text2',
   },
   {
+    id:"3",
     title: 'a6',
     manuf: 'audi',
     year: 2022,
@@ -36,7 +40,7 @@ export const Items: Item[] = [
     description:
       'Машина в хорошому стані як по кузову, так і по техніці. Мотор масло не бере, від слова зовсім, ланцюги змінювалися. з паливної форсунки робилися близько 20 тис км тому, а разом з ним і турбіна. По ходовій все добре, нещодавно змінювалися стійки. так само є другий комплект дисків (літній, це +400 $ до вартості машини)',
   },
-  {
+  {id:"4",
     title: 'octavia',
     manuf: 'skoda',
     year: 2009,
@@ -46,7 +50,7 @@ export const Items: Item[] = [
     description:
       'Авто в хорошому стані . Економне, комфортне, вмістке , досить динамічне. Ходова , підвіска - замінені , мотор в повному порядку, вся електрика працює',
   },
-  {
+  {id:"5",
     title: 'Lancer',
     manuf: 'Mitsubishi',
     year: 2008,

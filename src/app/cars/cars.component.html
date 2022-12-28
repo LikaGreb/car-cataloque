@@ -1,23 +1,37 @@
-<p>cars works!</p>
-<app-select-fields (toGetCarsChange)="toGetCarsChange($event)"></app-select-fields>
-<button mat-flat-button (click)="openModal()" >Додати авто</button>
+<app-select-fields
+  (toGetCarsChange)="toGetCarsChange($event)"
+  [updateOptions]="update"
+  [(ngModel)]="update"
+  ngDefaultControl
+></app-select-fields>
+<button mat-flat-button (click)="openModal()">Додати авто</button>
 <table>
-    <tr>
-        <th>Модель</th>
-        <th>Виробник</th>
-        <th>Рік випуску</th>
-        <th>Колір</th>
-        <th>Об'єм двигуна</th>
-        <th>Ціна</th>
-        <th>Опис</th>
-    </tr>
-    <tr  *ngFor="let item of itemsFromLS" class="table">
-    <td >{{item.title}}</td>
-    <td >{{item.manuf}}</td>
-    <td >{{item.year}}</td>
-    <td >{{item.color}}</td>
-    <td >{{item.engine_opas}}</td>
-    <td >{{item.price}}</td>
-    <td >{{item.description}}</td>
-    </tr>
+  <tr>
+    <th>Модель</th>
+    <th>Виробник</th>
+    <th>Рік випуску</th>
+    <th>Колір</th>
+    <th>Об'єм двигуна</th>
+    <th>Ціна</th>
+    <th>Опис</th>
+  </tr>
+  <tr *ngFor="let item of itemsFromLS" class="table">
+    <td>{{ item.title }}</td>
+    <td>{{ item.manuf }}</td>
+    <td>{{ item.year }}</td>
+    <td>{{ item.color }}</td>
+    <td>{{ item.engine_opas }}</td>
+    <td>{{ item.price }}</td>
+    <td>{{ item.description }}</td>
+    <td>
+      <button color="primary" mat-flat-button (click)="edit(item)">
+        Редагувати
+      </button>
+    </td>
+    <td>
+      <button color="primary" mat-flat-button (click)="delete(item.id)">
+        Видалити
+      </button>
+    </td>
+  </tr>
 </table>

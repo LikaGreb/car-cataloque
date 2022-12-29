@@ -1,0 +1,27 @@
+h1 {
+  text-align: center;
+}
+mat-label {
+  display: block;
+}
+mat-form-field {
+  margin: 5px;
+}
+.textarea {
+  width: 430px;
+  margin-left: 30px;
+  height: 170px;
+}
+.btns {
+  margin-right: 30px;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: right;
+  gap: 10px;
+  #btnDel {
+    background-color: rgb(243, 120, 120);
+  }
+  #btnSave {
+    background-color: rgb(120, 243, 136);
+  }
+}

@@ -14,6 +14,7 @@ import { DialogBoxComponent } from './dialog-box/dialog-box.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { DialogBoxEditComponent } from './dialog-box-edit/dialog-box-edit.component';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { DialogBoxEditComponent } from './dialog-box-edit/dialog-box-edit.compon
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
+    MatIconModule,
   ],
 })
 export class AppModule {}

@@ -28,14 +28,17 @@
     <label>Ціна</label>
     <input matInput [(ngModel)]="editCar.price" />
   </mat-form-field>
-  <mat-form-field appearance="fill">
+ 
+</div>
+<div >
+   <mat-form-field appearance="fill" class="textarea">
     <label>Опис</label>
     <textarea matInput [(ngModel)]="editCar.description"></textarea>
   </mat-form-field>
 </div>
 
-<div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">Відміна</button>
-  <button mat-button (click)="save()"  cdkFocusInitial>Зберегти</button>
+<div mat-dialog-actions class="btns">
+  <button mat-button id="btnDel" (click)="onNoClick()">Відміна</button>
+  <button mat-button id="btnSave" (click)="save()"  cdkFocusInitial>Зберегти</button>
 </div>
 </section>

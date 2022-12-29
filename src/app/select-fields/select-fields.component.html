@@ -1,8 +1,7 @@
-
-<section class="example-section">
-  <span class="example-list-section">
+<section class="section">
+  <span class="list-section">
     <mat-checkbox
-      class="example-margin"
+      class="margin-checkbox"
       [checked]="allComplete"
       [color]="selector.color"
       [indeterminate]="someComplete()"
@@ -11,7 +10,7 @@
     </mat-checkbox>
     <p>{{ selector.name }}</p>
   </span>
-  <span class="example-list-section">
+  <span class="list-section">
     <ul>
       <li *ngFor="let subselector of selector.subselectors">
         <mat-checkbox
@@ -25,9 +24,16 @@
       </li>
     </ul>
   </span>
-  <p>{{updateOptions}}</p>
-  <button mat-flat-button (click)="filterItems(true)" [disabled]="isDisabled">
-    Фільтрувати
+  
+  <button
+    mat-flat-button
+    color="primary"
+    (click)="filterItems(true)"
+    [disabled]="isDisabled"
+  >
+    <mat-icon>filter_list</mat-icon>
   </button>
-  <button mat-flat-button (click)="noFilter(false)">Скинути фільтр</button>
+  <button mat-flat-button color="warn" (click)="noFilter(false)">
+    <mat-icon>clear</mat-icon>
+  </button>
 </section>

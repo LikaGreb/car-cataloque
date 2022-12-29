@@ -51,6 +51,7 @@ export class DialogBoxEditComponent {
 
   ngOnInit() {
     this.editCar = Object.assign({}, this.data.itemEd);
+    console.log("clone");
   }
 
   onNoClick(): void {

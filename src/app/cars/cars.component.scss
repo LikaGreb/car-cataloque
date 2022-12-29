@@ -1,3 +1,26 @@
-.table{
-    border: 1px;
+section{
+padding: 10px;
+width: 1200px;
+margin-left: calc((100vw - 1200px)/2);
+ background-color: rgb(223, 222, 222);
+ border-radius: 5px;
+}
+.add-button{
+    margin-left: 1075px;
+    background-color: green;
+}
+// .mat-success {
+//     background-color: green;
+//     color: #fff;
+// }
+table{
+  
+    border-collapse: collapse;
+}
+.table-body>td{
+border-radius: 5px;
+border:1px solid blue;
+padding: 5px;
+max-width: 600px;
+
 }

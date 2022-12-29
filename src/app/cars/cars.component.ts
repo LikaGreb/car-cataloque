@@ -49,7 +49,9 @@ export class CarsComponent implements OnInit {
     if (this.checkboxValManuf !== null) {
       for (let i = 0; i < this.checkboxValManuf.length; i++) {
         this.newArr = this.newArr.concat(
-          this.itemsFromLS.filter((t) => t.manuf.toLowerCase() == this.checkboxValManuf[i])
+          this.itemsFromLS.filter(
+            (t) => t.manuf.toLowerCase() == this.checkboxValManuf[i]
+          )
         );
       }
       this.itemsFromLS = this.newArr;
@@ -71,7 +73,7 @@ export class CarsComponent implements OnInit {
     console.log(itemEdit, 'idEdit');
     const dialogRef = this.dialog.open(DialogBoxEditComponent, {
       width: '550px',
-      height: '500px',
+      height: '700px',
       data: { itemEd: itemEdit },
     });
     dialogRef.afterClosed().subscribe((result) => {
@@ -81,7 +83,7 @@ export class CarsComponent implements OnInit {
   openModal() {
     const dialogRef = this.dialog.open(DialogBoxComponent, {
       width: '550px',
-      height: '500px',
+      height: '700px',
       data: 'right click',
     });
     dialogRef.afterClosed().subscribe((result) => {

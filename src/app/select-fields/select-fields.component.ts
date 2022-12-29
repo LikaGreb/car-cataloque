@@ -47,6 +47,7 @@ export class SelectFieldsComponent {
   setSubselectors() {
     this.items = JSON.parse(localStorage.getItem('items')!);
     console.log(this.items);
+    //this.preselectors = [];
     this.items.map((i) => {
       this.preselectors = this.preselectors.concat({
         name: i.manuf.toLowerCase(),
@@ -95,7 +96,8 @@ export class SelectFieldsComponent {
         localStorage.removeItem('checkboxValues');
         this.checkboxValues = [];
         if (this.selector.subselectors!.filter((t) => t.completed).length > 0) {
-          const checkboxes = this.selector.subselectors!.filter(  //знаходимо помічені бокси
+          const checkboxes = this.selector.subselectors!.filter(
+            //знаходимо помічені бокси
             (t) => t.completed
           );
 

@@ -11,7 +11,7 @@ import { MatDialogModule } from '@angular/material/dialog';
   styleUrls: ['./cars.component.scss'],
 })
 export class CarsComponent implements OnInit {
-  checkboxVal1: Array<string> = [];
+  checkboxValManuf: Array<string> = [];
   newArr: Array<Item> = [];
   items = Items;
   itemsFromLS: Array<Item> = [];
@@ -44,12 +44,12 @@ export class CarsComponent implements OnInit {
   }
 
   getCars() {
-    this.checkboxVal1 = JSON.parse(localStorage.getItem('checkboxValues')!);
-    console.log(this.checkboxVal1);
-    if (this.checkboxVal1 !== null) {
-      for (let i = 0; i < this.checkboxVal1.length; i++) {
+    this.checkboxValManuf = JSON.parse(localStorage.getItem('checkboxValues')!);
+    console.log(this.checkboxValManuf);
+    if (this.checkboxValManuf !== null) {
+      for (let i = 0; i < this.checkboxValManuf.length; i++) {
         this.newArr = this.newArr.concat(
-          this.itemsFromLS.filter((t) => t.manuf == this.checkboxVal1[i])
+          this.itemsFromLS.filter((t) => t.manuf.toLowerCase() == this.checkboxValManuf[i])
         );
       }
       this.itemsFromLS = this.newArr;
@@ -59,7 +59,7 @@ export class CarsComponent implements OnInit {
       this.newArr = [];
     }
     this.update = true;
-    console.log(this.update, 'this.updateOptions');
+    console.log(this.update, 'updates from father');
   }
   delete(id: string): void {
     this.itemsFromLS = this.itemsFromLS.filter((i) => i.id != id);

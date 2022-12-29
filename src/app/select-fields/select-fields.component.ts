@@ -2,11 +2,11 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
 import { Items } from '../cars/cars';
 
-export interface Task {
+export interface Selector {
   name: string;
   completed: boolean;
   color: ThemePalette;
-  subtasks?: Task[];
+  subselectors?: Selector[];
 }
 @Component({
   selector: 'app-select-fields',
@@ -16,12 +16,12 @@ export interface Task {
 export class SelectFieldsComponent {
   @Input() updateOptions: boolean = false;
   items = Items;
-  test: Array<Task> = [];
-  task: Task = {
+  preselectors: Array<Selector> = [];
+  selector: Selector = {
     name: 'Виробник',
     completed: false,
     color: 'primary',
-    subtasks: [],
+    subselectors: [],
   };
 
   @Output() toGetCarsChange = new EventEmitter<boolean>();
@@ -31,74 +31,84 @@ export class SelectFieldsComponent {
   allComplete: boolean = false;
 
   constructor() {
+    this.setSubselectors();
+  }
+
+  ngDoCheck() {
+    if (this.updateOptions === true) {
+      console.log(this.updateOptions, 'updateOptions is true');
+      this.setSubselectors();
+      this.updateOptions = false;
+    }
+    this.updateOptions = false;
+    console.log(this.updateOptions, 'this.updateOptions');
+    //this.filterItems(false);
+  }
+  setSubselectors() {
     this.items = JSON.parse(localStorage.getItem('items')!);
     console.log(this.items);
     this.items.map((i) => {
-      this.test = this.test.concat({
-        name: i.manuf,
+      this.preselectors = this.preselectors.concat({
+        name: i.manuf.toLowerCase(),
         completed: false,
         color: 'primary',
       });
     });
-    this.task.subtasks! = [...this.test!].reduce(
-      (a: Array<Task>, c) => (
-        a.map((b: any) => b.name).includes(c.name) || a.push(c), a
+    this.selector.subselectors! = [...this.preselectors!].reduce(
+      (a: Array<Selector>, c) => (
+        a
+          .map((b: any) => b.name.toLowerCase())
+          .includes(c.name.toLowerCase()) || a.push(c),
+        a
       ),
       []
     );
   }
-
-  ngDoCheck() {
-    console.log(this.updateOptions, 'this.updateOptions');
-    //this.filterItems(false);
-  }
   updateAllComplete(): void {
     this.allComplete =
-      this.task.subtasks != null &&
-      this.task.subtasks.every((t) => t.completed);
+      this.selector.subselectors != null &&
+      this.selector.subselectors.every((t) => t.completed);
   }
 
   someComplete(): boolean {
-    if (this.task.subtasks == null) {
+    if (this.selector.subselectors == null) {
       return false;
     }
 
     return (
-      this.task.subtasks.filter((t) => t.completed).length > 0 &&
+      this.selector.subselectors.filter((t) => t.completed).length > 0 &&
       !this.allComplete
     );
   }
 
   setAll(completed: boolean) {
     this.allComplete = completed;
-    if (this.task.subtasks == null) {
+    if (this.selector.subselectors == null) {
       return;
     }
-    this.task.subtasks.forEach((t) => (t.completed = completed));
+    this.selector.subselectors.forEach((t) => (t.completed = completed));
   }
 
   filterItems(t: boolean) {
-    console.log(this.updateOptions, 'updateOptions in child');
     if (!this.isDisabled) {
-      if ((this.updateOptions)) {
-        console.log(this.updateOptions, 'updateOptions in child');
-        if (this.task.subtasks !== null) {
-          localStorage.removeItem('checkboxValues');
-          this.checkboxValues = [];
-          if (this.task.subtasks!.filter((t) => t.completed).length > 0) {
-            const checkboxes = this.task.subtasks!.filter((t) => t.completed);
+      if (this.selector.subselectors !== null) {
+        localStorage.removeItem('checkboxValues');
+        this.checkboxValues = [];
+        if (this.selector.subselectors!.filter((t) => t.completed).length > 0) {
+          const checkboxes = this.selector.subselectors!.filter(  //знаходимо помічені бокси
+            (t) => t.completed
+          );
 
-            checkboxes.map((b) => {
-              if (this.checkboxValues.indexOf(b.name) < 0) {
-                this.checkboxValues.push(b.name);
-              }
-            });
-            localStorage.setItem(
-              'checkboxValues',
-              JSON.stringify(this.checkboxValues)
-            );
-            this.toGetCarsChange.emit(t);
-          }
+          checkboxes.map((b) => {
+            if (this.checkboxValues.indexOf(b.name.toLowerCase()) < 0) {
+              this.checkboxValues.push(b.name.toLowerCase());
+            }
+          });
+          localStorage.setItem(
+            'checkboxValues',
+            JSON.stringify(this.checkboxValues)
+          );
+          this.toGetCarsChange.emit(t);
         }
       }
     } else {
@@ -112,8 +122,11 @@ export class SelectFieldsComponent {
     this.isDisabled = false;
     localStorage.removeItem('checkboxValues');
     this.checkboxValues = [];
-    console.log(this.checkboxValues, 'checkboxValues2');
-    this.task.subtasks!.forEach((t) => (t.completed = false));
+
+    this.selector.subselectors!.forEach((t) => (t.completed = false));
     this.toGetCarsChange.emit(t);
   }
+}
+function constuctor() {
+  throw new Error('Function not implemented.');
 }

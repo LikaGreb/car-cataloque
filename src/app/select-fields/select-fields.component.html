@@ -1,26 +1,26 @@
-<p>select-fields works!</p>
+
 <section class="example-section">
   <span class="example-list-section">
     <mat-checkbox
       class="example-margin"
       [checked]="allComplete"
-      [color]="task.color"
+      [color]="selector.color"
       [indeterminate]="someComplete()"
       (change)="setAll($event.checked)"
     >
     </mat-checkbox>
-    <p>{{ task.name }}</p>
+    <p>{{ selector.name }}</p>
   </span>
   <span class="example-list-section">
     <ul>
-      <li *ngFor="let subtask of task.subtasks">
+      <li *ngFor="let subselector of selector.subselectors">
         <mat-checkbox
-          [(ngModel)]="subtask.completed"
-          [color]="subtask.color"
+          [(ngModel)]="subselector.completed"
+          [color]="subselector.color"
           (ngModelChange)="updateAllComplete()"
           [disabled]="isDisabled"
         >
-          {{ subtask.name }}
+          {{ subselector.name }}
         </mat-checkbox>
       </li>
     </ul>

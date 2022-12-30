@@ -3,16 +3,15 @@
     <mat-checkbox
       class="margin-checkbox"
       [checked]="allComplete"
-      [color]="selector.color"
+      [color]="selectorPrice.color"
       [indeterminate]="someComplete()"
-      (change)="setAll($event.checked)"
     >
     </mat-checkbox>
-    <p>{{ selector.name }}</p>
+    <p>{{ selectorPrice.name }}</p>
   </span>
   <span class="list-section">
     <ul>
-      <li *ngFor="let subselector of selector.subselectors">
+      <li *ngFor="let subselector of selectorPrice.subselectors">
         <mat-checkbox
           [(ngModel)]="subselector.completed"
           [color]="subselector.color"
@@ -24,7 +23,7 @@
       </li>
     </ul>
   </span>
-  
+
   <button
     mat-flat-button
     color="primary"
@@ -33,5 +32,5 @@
   >
     <mat-icon>filter_list</mat-icon>
   </button>
-  
+ 
 </section>

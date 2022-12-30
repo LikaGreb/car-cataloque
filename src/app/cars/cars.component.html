@@ -1,15 +1,54 @@
-<app-select-fields
-  (toGetCarsChange)="toGetCarsChange($event)"
-  [updateOptions]="update"
-  [(ngModel)]="update"
-  ngDefaultControl
-></app-select-fields>
+<div class="selectors">
+  <div class="selectors-withot-button">
+  <app-select-fields
+    (toGetCarsChange)="toGetCarsChange($event)"
+    [updateOptions]="update"
+    [(ngModel)]="update"
+    ngDefaultControl
+    [clearAllFilters]="clearAllFilters"
+  ></app-select-fields>
+
+  <app-select-year
+    (toGetCarsChange)="toGetCarsChange($event)"
+    [updateOptions]="update"
+    [(ngModel)]="update"
+    ngDefaultControl
+    [clearAllFilters]="clearAllFilters"
+  ></app-select-year>
+  <app-select-fields-color
+    (toGetCarsChange)="toGetCarsChange($event)"
+    [updateOptions]="update"
+    [(ngModel)]="update"
+    ngDefaultControl
+    [clearAllFilters]="clearAllFilters"
+  ></app-select-fields-color>
+   <app-select-capacity
+    (toGetCarsChange)="toGetCarsChange($event)"
+    [updateOptions]="update"
+    [(ngModel)]="update"
+    ngDefaultControl
+    [clearAllFilters]="clearAllFilters"
+  ></app-select-capacity>
+    <app-select-price
+    (toGetCarsChange)="toGetCarsChange($event)"
+    [updateOptions]="update"
+    [(ngModel)]="update"
+    ngDefaultControl
+    [clearAllFilters]="clearAllFilters"
+  ></app-select-price>
+  </div>
+  <button  class="delFilters"
+    mat-flat-button
+    color="warn"
+    (click)="delFilters()"><mat-icon>clear</mat-icon>Скинути всі фільтри</button>
+</div>
+
 <section>
   <button
     class="add-button"
     mat-flat-button
     color="accent"
-    (click)="openModal()"
+    (click)="add()"
   >
     <mat-icon>add_circle_outline</mat-icon>Додати
   </button>
@@ -28,11 +67,11 @@
       <td>{{ item.manuf }}</td>
       <td>{{ item.year }}</td>
       <td>{{ item.color }}</td>
-      <td>{{ item.engine_opas }}</td>
+      <td>{{ item.engine_capas }}</td>
       <td>{{ item.price }}</td>
-      <td>{{ item.description }}</td>
+      <td class="description">{{ item.description }}</td>
       <td>
-        <button   mat-flat-button color="primary" (click)="edit(item)">
+        <button mat-flat-button color="primary" (click)="edit(item)">
           <mat-icon>create</mat-icon>
         </button>
       </td>

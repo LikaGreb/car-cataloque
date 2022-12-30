@@ -3,16 +3,16 @@
     <mat-checkbox
       class="margin-checkbox"
       [checked]="allComplete"
-      [color]="selector.color"
+      [color]="selectorColor.color"
       [indeterminate]="someComplete()"
-      (change)="setAll($event.checked)"
+     
     >
     </mat-checkbox>
-    <p>{{ selector.name }}</p>
+    <p>{{ selectorColor.name }}</p>
   </span>
   <span class="list-section">
     <ul>
-      <li *ngFor="let subselector of selector.subselectors">
+      <li *ngFor="let subselector of selectorColor.subselectors">
         <mat-checkbox
           [(ngModel)]="subselector.completed"
           [color]="subselector.color"
@@ -30,8 +30,8 @@
     color="primary"
     (click)="filterItems(true)"
     [disabled]="isDisabled"
-  >
+  >  
     <mat-icon>filter_list</mat-icon>
   </button>
-  
+ 
 </section>

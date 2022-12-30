@@ -1,44 +1,47 @@
+<section>
+  <h1 mat-dialog-title>Редагувати авто</h1>
+  <p *ngIf="error !== ''">{{ error }}</p>
 
-<section >
-<h1 mat-dialog-title>Редагувати авто</h1>
-<p *ngIf="error !== ''">{{ error }}</p>
+  <div mat-dialog-content>
+    <mat-form-field appearance="fill">
+      <label>Модель</label>
+      <input matInput [(ngModel)]="editCar.title" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <label>Виробник</label>
+      <input matInput [(ngModel)]="editCar.manuf" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <label>Рік випуску</label>
+      <input matInput [(ngModel)]="editCar.year" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <label>Колір</label>
+      <input matInput [(ngModel)]="editCar.color" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <label>Об'єм двигуна</label>
+      <input matInput [(ngModel)]="editCar.engine_capas" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <label>Ціна</label>
+      <input matInput [(ngModel)]="editCar.price" />
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field  class="textar">
+       <textarea  class="textarea" matInput
+            cdkTextareaAutosize
+            #autosize="cdkTextareaAutosize"
+            cdkAutosizeMinRows="1"
+            cdkAutosizeMaxRows="5" [(ngModel)]="editCar.description"></textarea>
+    </mat-form-field>
+  </div>
 
-<div  mat-dialog-content>
-  <mat-form-field appearance="fill">
-    <label>Модель</label>
-    <input matInput [(ngModel)]="editCar.title" />
-  </mat-form-field>
-  <mat-form-field appearance="fill">
-    <label>Виробник</label>
-    <input matInput [(ngModel)]="editCar.manuf" />
-  </mat-form-field>
-  <mat-form-field appearance="fill">
-    <label>Рік випуску</label>
-    <input matInput [(ngModel)]="editCar.year" />
-  </mat-form-field>
-  <mat-form-field appearance="fill">
-    <label>Колір</label>
-    <input matInput [(ngModel)]="editCar.color" />
-  </mat-form-field>
-  <mat-form-field appearance="fill">
-    <label>Об'єм двигуна</label>
-    <input matInput [(ngModel)]="editCar.engine_opas" />
-  </mat-form-field>
-  <mat-form-field appearance="fill">
-    <label>Ціна</label>
-    <input matInput [(ngModel)]="editCar.price" />
-  </mat-form-field>
- 
-</div>
-<div >
-   <mat-form-field appearance="fill" class="textarea">
-    <label>Опис</label>
-    <textarea matInput [(ngModel)]="editCar.description"></textarea>
-  </mat-form-field>
-</div>
-
-<div mat-dialog-actions class="btns">
-  <button mat-button id="btnDel" (click)="onNoClick()">Відміна</button>
-  <button mat-button id="btnSave" (click)="save()"  cdkFocusInitial>Зберегти</button>
-</div>
+  <div mat-dialog-actions class="btns">
+    <button mat-button id="btnDel" (click)="onNoClick()">Відміна</button>
+    <button mat-button id="btnSave" (click)="save()" cdkFocusInitial>
+      Зберегти
+    </button>
+  </div>
 </section>

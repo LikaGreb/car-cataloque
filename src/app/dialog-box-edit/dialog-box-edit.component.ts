@@ -20,7 +20,7 @@ export interface NewCar {
   manuf: string;
   year: number;
   color: string;
-  engine_opas: number;
+  engine_capas: number;
   price: number;
   description: string;
 }
@@ -40,7 +40,7 @@ export class DialogBoxEditComponent {
     manuf: '',
     year: 0,
     color: '',
-    engine_opas: 0,
+    engine_capas: 0,
     price: 0,
     description: '',
   };
@@ -51,7 +51,7 @@ export class DialogBoxEditComponent {
 
   ngOnInit() {
     this.editCar = Object.assign({}, this.data.itemEd);
-    console.log("clone");
+    console.log('clone');
   }
 
   onNoClick(): void {
@@ -62,9 +62,12 @@ export class DialogBoxEditComponent {
       this.editCar.title === '' ||
       this.editCar.manuf === '' ||
       this.editCar.year === 0 ||
+      !this.editCar.year ||
       this.editCar.color === '' ||
-      this.editCar.engine_opas === 0 ||
+      this.editCar.engine_capas === 0 ||
+      !this.editCar.engine_capas ||
       this.editCar.price === 0 ||
+      !this.editCar.price ||
       this.editCar.description === ''
     ) {
       this.error = 'Введіть дані';

@@ -13,6 +13,10 @@ export class AppComponent {
 
   ngOnInit() {
     localStorage.removeItem('checkboxValues');
+    localStorage.removeItem('checkboxValuesCap');
+    localStorage.removeItem('checkboxValuesYear');
+    localStorage.removeItem('checkboxValuesColor');
+    localStorage.removeItem('checkboxValuesPrice');
   }
   // openModal() {
   //   this.dialog.open(DialogBoxComponent, {

@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Inject,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import {
   MatDialog,
   MAT_DIALOG_DATA,
@@ -13,7 +20,7 @@ export interface NewCar {
   manuf: string;
   year: number;
   color: string;
-  engine_opas: number;
+  engine_capas: number;
   price: number;
   description: string;
 }
@@ -29,12 +36,12 @@ export class DialogBoxComponent {
   @Input() isEdit: boolean = false;
   items = Items;
   newCar: NewCar = {
-    id: "",
+    id: '',
     title: '',
     manuf: '',
     year: 0,
     color: '',
-    engine_opas: 0,
+    engine_capas: 0,
     price: 0,
     description: '',
   };
@@ -48,13 +55,15 @@ export class DialogBoxComponent {
   }
   save(): void {
     if (
-      
       this.newCar.title === '' ||
       this.newCar.manuf === '' ||
       this.newCar.year === 0 ||
+      !this.newCar.year ||
       this.newCar.color === '' ||
-      this.newCar.engine_opas === 0 ||
+      this.newCar.engine_capas === 0 ||
+      !this.newCar.engine_capas ||
       this.newCar.price === 0 ||
+      !this.newCar.price ||
       this.newCar.description === ''
     ) {
       this.error = 'Введіть дані';
@@ -63,14 +72,14 @@ export class DialogBoxComponent {
       }, 3000);
       return;
     }
-    const counter = new Counter;
+    const counter = new Counter();
     this.newCar.id = counter.getCounter();
     console.log(this.newCar);
 
     const text = localStorage.getItem('items');
     console.log(text, 'text');
     this.itemsFromLS1 = JSON.parse(text!);
-      console.log(this.itemsFromLS1, 'this.itemsFromLS');
+    console.log(this.itemsFromLS1, 'this.itemsFromLS');
     this.itemsFromLS1.push(this.newCar);
     const itemsToJSON1 = JSON.stringify(this.itemsFromLS1);
     localStorage.setItem('items', itemsToJSON1);

@@ -9,18 +9,19 @@ export interface Selector {
   subselectors?: Selector[];
 }
 @Component({
-  selector: 'app-select-fields',
-  templateUrl: './select-fields.component.html',
-  styleUrls: ['./select-fields.component.scss'],
+  selector: 'app-select-fields-color',
+  templateUrl: './select-fields-color.component.html',
+  styleUrls: ['./select-fields-color.component.scss'],
 })
-export class SelectFieldsComponent {
+export class SelectFieldsColorComponent {
   @Input() clearAllFilters: boolean = false;
   @Input() updateOptions: boolean = false;
   items = Items;
   preselectors: Array<Selector> = [];
+  preselectorsColor: Array<Selector> = [];
 
-  selector: Selector = {
-    name: 'Виробник',
+  selectorColor: Selector = {
+    name: 'Колір',
     completed: false,
     color: 'primary',
     subselectors: [],
@@ -29,7 +30,7 @@ export class SelectFieldsComponent {
   @Output() toGetCarsChange = new EventEmitter<boolean>();
 
   isDisabled: boolean = false;
-  checkboxValues: Array<string> = [];
+  checkboxValuesColor: Array<string> = [];
   allComplete: boolean = false;
 
   constructor() {
@@ -53,13 +54,13 @@ export class SelectFieldsComponent {
     console.log(this.items);
     //this.preselectors = [];
     this.items.map((i) => {
-      this.preselectors = this.preselectors.concat({
-        name: i.manuf.toLowerCase(),
+      this.preselectorsColor = this.preselectorsColor.concat({
+        name: i.color.toLowerCase(),
         completed: false,
         color: 'primary',
       });
     });
-    this.selector.subselectors! = [...this.preselectors!].reduce(
+    this.selectorColor.subselectors! = [...this.preselectorsColor!].reduce(
       (a: Array<Selector>, c) => (
         a
           .map((b: any) => b.name.toLowerCase())
@@ -71,48 +72,50 @@ export class SelectFieldsComponent {
   }
   updateAllComplete(): void {
     this.allComplete =
-      this.selector.subselectors != null &&
-      this.selector.subselectors.every((t) => t.completed);
+      this.selectorColor.subselectors != null &&
+      this.selectorColor.subselectors.every((t) => t.completed);
   }
 
   someComplete(): boolean {
-    if (this.selector.subselectors == null) {
+    if (this.selectorColor.subselectors == null) {
       return false;
     }
 
     return (
-      this.selector.subselectors.filter((t) => t.completed).length > 0 &&
+      this.selectorColor.subselectors.filter((t) => t.completed).length > 0 &&
       !this.allComplete
     );
   }
 
-  setAll(completed: boolean) {
-    this.allComplete = completed;
-    if (this.selector.subselectors == null) {
-      return;
-    }
-    this.selector.subselectors.forEach((t) => (t.completed = completed));
-  }
+  // setAll(completed: boolean) {
+  //   this.allComplete = completed;
+  //   if (this.selectorColor.subselectors == null) {
+  //     return;
+  //   }
+  //   this.selectorColor.subselectors.forEach((t) => (t.completed = completed));
+  // }
 
   filterItems(t: boolean) {
     if (!this.isDisabled) {
-      if (this.selector.subselectors !== null) {
-        localStorage.removeItem('checkboxValues');
-        this.checkboxValues = [];
-        if (this.selector.subselectors!.filter((t) => t.completed).length > 0) {
-          const checkboxes = this.selector.subselectors!.filter(
+      if (this.selectorColor.subselectors !== null) {
+        localStorage.removeItem('checkboxValuesColor');
+        this.checkboxValuesColor = [];
+        if (
+          this.selectorColor.subselectors!.filter((t) => t.completed).length > 0
+        ) {
+          const checkboxes = this.selectorColor.subselectors!.filter(
             //знаходимо помічені бокси
             (t) => t.completed
           );
 
           checkboxes.map((b) => {
-            if (this.checkboxValues.indexOf(b.name.toLowerCase()) < 0) {
-              this.checkboxValues.push(b.name.toLowerCase());
+            if (this.checkboxValuesColor.indexOf(b.name.toLowerCase()) < 0) {
+              this.checkboxValuesColor.push(b.name.toLowerCase());
             }
           });
           localStorage.setItem(
-            'checkboxValues',
-            JSON.stringify(this.checkboxValues)
+            'checkboxValuesColor',
+            JSON.stringify(this.checkboxValuesColor)
           );
           this.toGetCarsChange.emit(t);
         }
@@ -123,18 +126,15 @@ export class SelectFieldsComponent {
 
     this.isDisabled = true;
   }
- 
+
   noFilter(t: boolean) {
     this.isDisabled = false;
-    localStorage.removeItem('checkboxValues');
-    this.checkboxValues = [];
+    localStorage.removeItem('checkboxValuesColor');
+    this.checkboxValuesColor = [];
 
-    this.selector.subselectors!.forEach((t) => (t.completed = false));
+    this.selectorColor.subselectors!.forEach((t) => (t.completed = false));
     this.toGetCarsChange.emit(t);
   }
-}
-function constuctor() {
-  throw new Error('Function not implemented.');
 }
 
 

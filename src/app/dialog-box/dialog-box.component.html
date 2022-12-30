@@ -20,7 +20,7 @@
     </mat-form-field>
     <mat-form-field appearance="fill">
       <label>Об'єм двигуна</label>
-      <input matInput [(ngModel)]="newCar.engine_opas" />
+      <input matInput [(ngModel)]="newCar.engine_capas" />
     </mat-form-field>
     <mat-form-field appearance="fill">
       <label>Ціна</label>
@@ -36,6 +36,8 @@
 
   <div mat-dialog-actions class="btns">
     <button id="btnDel" mat-button (click)="onNoClick()">Відміна</button>
-    <button id="btnSave" mat-button (click)="save()" cdkFocusInitial>Зберегти</button>
+    <button id="btnSave" mat-button (click)="save()" cdkFocusInitial>
+      Зберегти
+    </button>
   </div>
 </section>
